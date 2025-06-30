@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  lucide_icons: ^0.257.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +24,7 @@ flutter:
   assets:
     - assets/images/nike_p6000_blck.jpg
     - assets/images/adidas_samba_blck.jpeg
+    - assets/images/nike_sb_dunk_white_gum.jpg
+    - assets/images/nb_550.jpg
+    - assets/images/adidas_campus_core_black.jpg
+    - assets/images/Nike_alphafly_3_volt_Concord.jpg
