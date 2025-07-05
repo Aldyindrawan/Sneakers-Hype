@@ -1,11 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'explore_page.dart';
+import 'cart_page.dart';
+import 'whislist_page.dart';
+import 'user_page.dart';
+import 'notification_page.dart';
+import 'nike_collection.dart';
+import 'adidas_collection.dart';
+import 'new balance_collection.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String _selectedBrand = '';
+
+  final List<Map<String, String>> allProducts = [
+    {
+      'brand': 'NIKE',
+      'name': 'Nike P-6000',
+      'price': 'IDR 1,200,000',
+      'image': 'assets/images/nike_p6000_blck.jpg',
+    },
+    {
+      'brand': 'ADIDAS',
+      'name': 'Adidas Samba',
+      'price': 'IDR 1,000,000',
+      'image': 'assets/images/adidas_samba_blck.jpeg',
+    },
+    {
+      'brand': 'NIKE',
+      'name': 'Nike SB Dunk Low',
+      'price': 'IDR 1,300,000',
+      'image': 'assets/images/nike_sb_dunk_white_gum.jpg',
+    },
+    {
+      'brand': 'NEW BALANCE',
+      'name': 'New Balance 550',
+      'price': 'IDR 1,500,000',
+      'image': 'assets/images/nb_550.jpg',
+    },
+    {
+      'brand': 'ADIDAS',
+      'name': 'Adidas Campus 00’s',
+      'price': 'IDR 1,400,000',
+      'image': 'assets/images/adidas_campus_core_black.jpg',
+    },
+    {
+      'brand': 'NIKE',
+      'name': 'Nike Alphafly 3',
+      'price': 'IDR 2,000,000',
+      'image': 'assets/images/Nike_alphafly_3_volt_Concord.jpg',
+    },
+  ];
+
+  List<Map<String, String>> _filteredProducts() {
+    if (_selectedBrand.isEmpty) return allProducts;
+    return allProducts
+        .where((p) => p['brand']!.toUpperCase() == _selectedBrand.toUpperCase())
+        .toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final products = _filteredProducts();
+
     return Scaffold(
       backgroundColor: Colors.black,
       bottomNavigationBar: BottomNavigationBar(
@@ -13,6 +76,32 @@ class HomeScreen extends StatelessWidget {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
         type: BottomNavigationBarType.fixed,
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 0) return;
+          Widget page;
+          switch (index) {
+            case 1:
+              page = const ExplorePage();
+              break;
+            case 2:
+              page = const CartPage();
+              break;
+            case 3:
+              page = const WhislistPage();
+              break;
+            case 4:
+              page = const UserProfilePage();
+              break;
+            default:
+              return;
+          }
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
+        },
         items: const [
           BottomNavigationBarItem(icon: Icon(LucideIcons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(LucideIcons.search), label: 'Explore'),
@@ -50,7 +139,15 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      const Icon(LucideIcons.bell, color: Colors.white),
+                      IconButton(
+                        icon: const Icon(LucideIcons.bell, color: Colors.white),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const NotificationPage()),
+                          );
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -58,7 +155,11 @@ class HomeScreen extends StatelessWidget {
                   // Filter Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: ['NIKE', 'ADIDAS', 'NEW BALANCE'].map((brand) {
+                    children: [
+                      {'label': 'NIKE', 'page': const NikePage()},
+                      {'label': 'ADIDAS', 'page': const AdidasPage()},
+                      {'label': 'NEW BALANCE', 'page': const NewBalancePage()},
+                    ].map((item) {
                       return OutlinedButton(
                         style: OutlinedButton.styleFrom(
                           side: const BorderSide(color: Colors.white24),
@@ -67,8 +168,13 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        onPressed: () {},
-                        child: Text(brand),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => item['page'] as Widget),
+                          );
+                        },
+                        child: Text(item['label'] as String),
                       );
                     }).toList(),
                   ),
@@ -110,10 +216,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 6),
                         const Text(
                           'Get 30% OFF only this week',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(color: Colors.white70, fontSize: 14),
                         ),
                         const SizedBox(height: 12),
                         ElevatedButton(
@@ -131,58 +234,26 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
 
-                  // Produk Baris 1
-                  Row(
-                    children: [
-                      _buildProductCard(
-                        name: 'Nike P-6000',
-                        price: 'IDR 1,200,000',
-                        imageAsset: 'assets/images/nike_p6000_blck.jpg',
-                      ),
-                      const SizedBox(width: 16),
-                      _buildProductCard(
-                        name: 'Adidas Samba',
-                        price: 'IDR 1,000,000',
-                        imageAsset: 'assets/images/adidas_samba_blck.jpeg',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Produk Baris 2
-                  Row(
-                    children: [
-                      _buildProductCard(
-                        name: 'Nike SB Dunk Low',
-                        price: 'IDR 1,300,000',
-                        imageAsset: 'assets/images/nike_sb_dunk_white_gum.jpg',
-                      ),
-                      const SizedBox(width: 16),
-                      _buildProductCard(
-                        name: 'New Balance 550',
-                        price: 'IDR 1,500,000',
-                        imageAsset: 'assets/images/nb_550.jpg',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Produk Baris 3
-                  Row(
-                    children: [
-                      _buildProductCard(
-                        name: 'Adidas Campus 00’s',
-                        price: 'IDR 1,400,000',
-                        imageAsset: 'assets/images/adidas_campus_core_black.jpg',
-                      ),
-                      const SizedBox(width: 16),
-                      _buildProductCard(
-                        name: 'Nike Alphafly 3',
-                        price: 'IDR 2,000,000',
-                        imageAsset: 'assets/images/Nike_alphafly_3_volt_Concord.jpg',
-                      ),
-                    ],
-                  ),
+                  // Product Grid (2 columns)
+                  for (int i = 0; i < products.length; i += 2)
+                    Row(
+                      children: [
+                        _buildProductCard(
+                          name: products[i]['name']!,
+                          price: products[i]['price']!,
+                          imageAsset: products[i]['image']!,
+                        ),
+                        const SizedBox(width: 16),
+                        if (i + 1 < products.length)
+                          _buildProductCard(
+                            name: products[i + 1]['name']!,
+                            price: products[i + 1]['price']!,
+                            imageAsset: products[i + 1]['image']!,
+                          )
+                        else
+                          const Spacer(),
+                      ],
+                    ),
                 ],
               ),
             ),
