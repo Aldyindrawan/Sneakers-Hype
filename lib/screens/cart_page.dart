@@ -14,8 +14,8 @@ class CartPage extends StatelessWidget {
     {
       'name': 'Adidas Samba',
       'price': 1000000,
-      'image': 'assets/images/adidas_samba_blck.jpeg',
-      'qty': 2,
+      'image': 'assets/images/adidas samba black og.jpeg',
+      'qty': 1,
     },
   ];
 
@@ -140,7 +140,10 @@ class CartPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text('Checkout'),
+                child: const Text(
+                  'Checkout',
+                  style: TextStyle(color: Colors.white), // ✅ Putih
+                ),
               ),
             )
           ],

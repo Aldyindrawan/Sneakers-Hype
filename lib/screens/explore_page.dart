@@ -13,7 +13,7 @@ class ExplorePage extends StatelessWidget {
     {
       'name': 'Adidas Samba',
       'price': 'IDR 1,000,000',
-      'image': 'assets/images/adidas_samba_blck.jpeg',
+      'image': 'assets/images/adidas samba black og.jpeg',
     },
     {
       'name': 'Nike SB Dunk Low',

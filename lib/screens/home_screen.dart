@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       'brand': 'ADIDAS',
       'name': 'Adidas Samba',
       'price': 'IDR 1,000,000',
-      'image': 'assets/images/adidas_samba_blck.jpeg',
+      'image': 'assets/images/adidas samba black og.jpeg',
     },
     {
       'brand': 'NIKE',
@@ -181,57 +181,62 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 24),
 
                   // Hype Drop Banner
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Colors.deepPurple, Colors.purpleAccent],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'SNEAKERS HYPE',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Hype Drop is Here',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        const Text(
-                          'Get 30% OFF only this week',
-                          style: TextStyle(color: Colors.white70, fontSize: 14),
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.deepPurple,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            textStyle: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          child: const Text('Shop Now'),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Hype Drop Banner
+Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(20),
+  decoration: BoxDecoration(
+    gradient: const LinearGradient(
+      colors: [Colors.deepPurple, Colors.purpleAccent],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(16),
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      const Text(
+        'SNEAKERS HYPE',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1.5,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      const SizedBox(height: 8),
+      const Text(
+        'Hype Drop is Here',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      const SizedBox(height: 6),
+      const Text(
+        'Get 30% OFF only this week',
+        style: TextStyle(color: Colors.white70, fontSize: 14),
+        textAlign: TextAlign.center,
+      ),
+      const SizedBox(height: 12),
+      ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.deepPurple,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        child: const Text('Shop Now'),
+      ),
+    ],
+  ),
+),
+                  
                   const SizedBox(height: 24),
 
                   // Product Grid (2 columns)

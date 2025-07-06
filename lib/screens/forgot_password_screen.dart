@@ -134,7 +134,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 48,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Validasi sederhana
                       if (newPasswordController.text != confirmPasswordController.text) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -161,7 +160,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text('Send Reset Link'),
+                    child: const Text(
+                      'Send Reset Link',
+                      style: TextStyle(color: Colors.white), // ✅ Warna putih ditambahkan
+                    ),
                   ),
                 ),
               ],

@@ -49,7 +49,10 @@ class RegisterScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text('Register'),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white), // ✅ Warna putih ditambahkan
+                    ),
                   ),
                 ),
               ],
